@@ -1,0 +1,51 @@
+Please specify simulation type. Enter MEALY or MOORE: MEALY
+Please specify the number of input bits (1-4): 3
+Node Red
+Node Green
+Node Blue
+Arc Red Red xx0 / HOT
+Arc Red Blue 001 / COLD
+Arc Green Green 01x / CALM
+Arc Purple Blue 000 / COLD
+%% error: state "Purple" not defined %%
+Arc Blue Yellow 000 / COLD
+%% error: state "Yellow" not defined %%
+Arc Blue Green 110 / CALM
+Arc Blue Green x11 / CALM
+ARC Green Red 00x / HOT
+Arc Red Green 010 / CALM
+Invalid action, this Arc has already been added!
+Arc Red Green 011 / CALM
+Arc Red Green 1x1 / CALM
+Arc Blue Green 00x / CALM
+Arc Green Blue 10x / COLD
+
+Output GRAPH:
+
+Red
+        Red xx0 / HOT
+        Blue 001 / COLD
+        Green 011 / CALM
+        Green 1x1 / CALM
+
+Blue
+        Green 110 / CALM
+        Green x11 / CALM
+        Green 00x / CALM
+        %% warning: input 010 not specified %%
+        %% warning: input 100 not specified %%
+        %% warning: input 101 not specified %%
+
+Green
+        Green 01x / CALM
+        Red 00x / HOT
+        Blue 10x / COLD
+        %% warning: input 110 not specified %%
+        %% warning: input 111 not specified %%
+
+Current |       Next State / Output
+State   | X = 000     X = 001     X = 010     X = 011     X = 100     X = 101     X = 110     X = 111
+--------------------------------------------------------------------------------------------------------
+Red     | Red/HOT     Blue/COLD   Red/HOT     Green/CALM  Red/HOT     Green/CALM  Red/HOT     Green/CALM
+Blue    | Green/CALM  Green/CALM  x/x         Green/CALM  x/x         x/x         Green/CALM  Green/CALM
+Green   | Red/HOT     Red/HOT     Green/CALM  Green/CALM  Blue/COLD   Blue/COLD   x/x         x/x
